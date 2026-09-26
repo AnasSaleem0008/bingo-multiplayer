@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BINGO — Multiplayer</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header class="heading"><div class="logo-badge">🎯</div><div><h1>BINGO</h1><p>Multiplayer • Fast • Fun</p></div></header>
+
+  <section id="lobby" class="panel">
+    <h2>🎮 Multiplayer Bingo</h2><p class="muted">Create a room or join one. Every player gets a different 1–100 board.</p>
+    <div class="lobby-grid">
+      <div class="card create-card"><h3>🚀 Create Room</h3><input id="nameInput" maxlength="16" placeholder="Your name"><button id="createBtn" class="primary">Create Game</button></div>
+      <div class="card join-card"><h3>🔑 Join Room</h3><input id="joinNameInput" maxlength="16" placeholder="Your name"><input id="roomInput" maxlength="8" placeholder="Room code"><button id="joinBtn" class="primary">Join Game</button></div>
+    </div><p id="lobbyMessage" class="message"></p>
+  </section>
+
+  <section id="room" class="panel hidden">
+    <div class="room-top"><div><span class="muted">ROOM CODE</span><strong id="roomCode">----</strong></div><div><span class="muted">YOU</span><strong id="myName">----</strong></div></div>
+    <div class="waiting-title">👥 Players</div><div class="players" id="players"></div>
+    <div class="room-actions"><button id="startBtn" class="primary">▶ Start Game</button><button id="leaveBtn" class="secondary">Leave</button></div><p id="roomMessage" class="message"></p>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="top-strip">
+      <div class="turn-card"><span class="tiny-label">CURRENT TURN</span><strong id="turnText">Waiting...</strong></div>
+      <div class="timer-card"><span class="tiny-label">TIME</span><strong id="timerText">30</strong><span>sec</span></div>
+    </div>
+    <div class="game-status" id="gameStatus">Choose one number when it is your turn.</div>
+
+    <div class="section-title">🏆 SCOREBOARD</div>
+    <div id="playersGame" class="scoreboard"></div>
+
+    <div class="called-card"><div><span class="tiny-label">LAST NUMBER CALLED</span><strong id="lastNumber">—</strong></div><div class="called-by" id="calledBy">Waiting for the first call...</div></div>
+
+    <div class="board-title"><span>Your Board</span><span>10 lines = WIN</span></div>
+    <div class="game" id="board"></div>
+    <div class="game-actions">
+      <button id="leaveGameBtn" class="secondary" type="button">Leave Game</button>
+      <button id="newGameBtn" class="primary hidden" type="button">Play Again</button>
+    </div>
+    <p id="gameMessage" class="message"></p>
+
+<section class="chat-panel" aria-label="Live chat">
+
+  <div class="chat-header">
+    <div>
+      <span class="tiny-label">LIVE CHAT</span>
+      <strong>💬 Room Chat</strong>
+    </div>
+    <span id="chatCount" class="chat-count">0</span>
+  </div>
+
+  <div id="chatMessages" class="chat-messages" aria-live="polite">
+    <div class="chat-empty">No messages yet. Say hello! 👋</div>
+  </div>
+
+  <!-- EMOJI BUTTONS -->
+  <div class="emoji-buttons">
+    <button type="button" onclick="addEmoji('😂')">😂</button>
+    <button type="button" onclick="addEmoji('😍')">😍</button>
+    <button type="button" onclick="addEmoji('😎')">😎</button>
+    <button type="button" onclick="addEmoji('😭')">😭</button>
+    <button type="button" onclick="addEmoji('🖕')">🖕</button>
+    <button type="button" onclick="addEmoji('😡')">😡</button>
+    <button type="button" onclick="addEmoji('👍')">👍</button>
+    <button type="button" onclick="addEmoji('🎉')">🎉</button>
+  </div>
+
+  <form id="chatForm" class="chat-form" autocomplete="off">
+    <input
+      id="chatInput"
+      maxlength="200"
+      placeholder="Type a message..."
+      aria-label="Chat message"
+    >
+
+    <button type="submit" class="primary">Send</button>
+  </form>
+
+</section>
+</div>
+  <footer class="developer-credit">
+    Developed by ANASSALEEM0008
+</footer>
+<div id="winnerOverlay" class="winner-overlay hidden"><div class="winner-box"><div class="trophy">🏆</div><h2 id="winnerTitle">WINNER!</h2><p id="winnerSub">Congratulations!</p><button id="overlayNewGame" class="primary">Play Again</button></div></div>
+<div id="confetti"></div>
+<script src="/socket.io/socket.io.js"></script><script src="javascript.js"></script>
+</body>
+</html>
